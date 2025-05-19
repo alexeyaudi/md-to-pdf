@@ -6,7 +6,17 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rocket = "0.5"
-rocket_cors = "0.6"
+# Rocket с фичами для JSON, файловых эндпоинтов и секретов
+rocket = { version = "0.5.0-rc.3", features = ["json", "fs", "secrets"] }
+
+# CORS для Rocket
+rocket_cors = "0.6.0"
+
+# Временные файлы
 tempfile = "3"
+
+# Логирование
 log = "0.4"
+# (по желанию) рантайм для логгера:
+# env_logger = "0.9"
+# Добавил фичи json/fs/secrets для Rocket, и зависимости rocket_cors, tempfile, log
