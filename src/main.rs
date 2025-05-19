@@ -28,7 +28,7 @@ impl<'r> FromRequest<'r> for ApiKey {
         // Собираем все заголовки Authorization
         let auth_headers: Vec<_> = req.headers().get("Authorization").collect();
         if auth_headers.len() != 1 {
-            return Outcome::Failure((Status::Unauthorized, ()));
+            return Outcome::Error((Status::Unauthorized, ()));
         }
         let provided = auth_headers[0];
 
@@ -40,7 +40,7 @@ impl<'r> FromRequest<'r> for ApiKey {
         if provided == expected {
             Outcome::Success(ApiKey(provided.to_string()))
         } else {
-            Outcome::Failure((Status::Unauthorized, ()))
+            Outcome::Error((Status::Unauthorized, ()))
         }
     }
 }
