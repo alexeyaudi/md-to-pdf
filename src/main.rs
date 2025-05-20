@@ -100,7 +100,7 @@ impl<'r> Responder<'r, 'static> for ConvertError {
 }
 
 /// Сам хэндлер конвертации: note, первым аргументом теперь идёт ApiKey
-#[post("/convert", data = "<form>")]
+#[post("/", data = "<form>")]
 async fn convert(_key: ApiKey, form: Form<ConvertForm>) -> Result<NamedFile, ConvertError> {
     // создаём временный PDF-файл
     let pdf_temp_path = Builder::new()
